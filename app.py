@@ -14,11 +14,21 @@ class App(ctk.CTk):
         ctk.set_appearance_mode("dark")
 
         self.create_variables()
+        self.create_widgets()
         self.run()
 
     def create_variables(self):
         self.mainpath = os.path.dirname(os.path.abspath(__file__))
         print(self.mainpath)
+
+    def create_widgets(self):
+        UpdateButton = ctk.CTkButton(self, text="Update!", command=self.check_update)
+        UpdateButton.pack()
+
+    def check_update(self):
+        with open(f"{self.mainpath}\\updater.py", "r") as file:
+            updaterexec = file.read()
+        exec(updaterexec, {"window": self, "ctk": ctk, "__file__": self.mainpath})
 
     def run(self):
         self.mainloop()

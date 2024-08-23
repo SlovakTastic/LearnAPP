@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import requests, os
 
+window.destroy()
+
 class Updater(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -10,10 +12,9 @@ class Updater(ctk.CTk):
         self.mainpath = os.path.dirname(os.path.abspath(__file__))
         self.repo_owner = 'SlovakTastic'
         self.repo_name = 'LearnAPP'
-        self.api_url = f'https://api.github.com/repos/{self.repo_owner}/{self.repo_name}/releases/latest'
-        self.token = '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'
-        self.create_widgets()
-        self.update_app()
+        self.api_url = f'https://api.github.com/repos/{self.repo_owner}/{self.repo_name}/contents'
+        # self.create_widgets()
+        # self.update_app()
         self.mainloop()
 
     def create_widgets(self):
@@ -24,8 +25,7 @@ class Updater(ctk.CTk):
         self.ProgressBar.place(relx=0.5, rely=0.5, anchor="n")
 
     def get_latest_release_info(self):
-        headers = {'Authorization': f'token {self.token}'}
-        response = requests.get(self.api_url, headers=headers)
+        response = requests.get(self.api_url)
         response.raise_for_status()
         latest_release = response.json()
         return latest_release
