@@ -1,1 +1,1 @@
-avbrgre
+/external/2-grade/matematika/chapter/subchapters/subchapter.py
