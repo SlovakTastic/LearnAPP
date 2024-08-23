@@ -22,8 +22,8 @@ class App(ctk.CTk):
         print(self.mainpath)
 
     def create_widgets(self):
-        UpdateButton = ctk.CTkButton(self, text="Update!", command=self.check_update)
-        UpdateButton.pack()
+        self.UpdateButton = ctk.CTkButton(self, text="Update!", command=self.check_update)
+        self.UpdateButton.pack()
 
     def check_update(self):
         with open(f"{self.mainpath}\\updater.py", "r") as file:
